@@ -23,23 +23,25 @@ bangs = {
 }
 
 
+def warn(err):
+    print(err)
+    exit(2)
+
+
 def main():
     if len(argv) == 1:
-        print('No arguments supplied')
-        exit(2)
+        warn('No arguments supplied')
     elif len(argv) == 2:
-        print('No query is provided')
-        exit(2)
-
+        warn('No query is provided')
     if argv[1] in bangs:
         try:
-            webbrowser.open(bangs[argv[1]].format(argv[2]))
+            webbrowser.open(
+                bangs[argv[1]].format(' '.join(argv[2:]))
+            )
         except webbrowser.Error as e:
-            print(e)
-            exit(1)
+            exit(f'Could not open: {e}')
     else:
-        print('Unknown bang.')
-        exit(2)
+        warn('Unknown bang.')
 
 
 main()
