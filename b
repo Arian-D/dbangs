@@ -32,21 +32,14 @@ def main():
     if len(argv) == 1:
         warn('No arguments supplied')
     if argv[1] in bangs:
-        if len(argv) == 2:  # go straight to website if no query provided
-            try:
-                webbrowser.open(
-                    bangs[argv[1]][0]  # bangs[bang][0] refers to website url and bangs[bang][1] refers to "search?q=" text
-                )
-            except webbrowser.Error as e:
-                exit(f'Could not open: {e}')
-        if len(argv) > 2:  # search the website
-            text = bangs[argv[1]][0] + bangs[argv[1]][1]
-            try:
-                webbrowser.open(
-                    text.format(' '.join(argv[2:]))
-                )
-            except webbrowser.Error as e:
-                exit(f'Could not open: {e}')
+        text = bangs[argv[1]][0] + (bangs[argv[1]][1] if len(argv) >= 3 else '')
+        # bangs[bang][0] refers to website url and bangs[bang][1] refers to "search?q=" text
+        try:
+            webbrowser.open(
+                text.format(' '.join(argv[2:]))
+            )
+        except webbrowser.Error as e:
+            exit(f'Could not open: {e}')
     else:
         warn('Unknown bang.')
 
