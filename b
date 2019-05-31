@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import webbrowser
-from sys import argv, exit
+from sys import argv, exit, stderr
 
 bangs = {
     'd': ('https://duckduckgo.com/', '?q={}'),
@@ -24,7 +24,7 @@ bangs = {
 
 
 def warn(err):
-    print(err)
+    print(err, file=stderr)
     exit(2)
 
 
