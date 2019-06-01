@@ -1,6 +1,6 @@
 BIN=b
 
 install:
-	cp -f ./$(BIN) /usr/local/bin
+	cp -f ./$(BIN) ~/.local/bin
 uninstall:
-	$(rm) /usr/local/bin/$(BIN)
+	$(RM) ~/.local/bin/$(BIN)
