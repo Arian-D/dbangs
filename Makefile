@@ -1,6 +1,8 @@
 BIN=b
 
 install:
-	cp -f ./$(BIN) ~/.local/bin
+	cp -f ./$(BIN) $(HOME)/.local/bin
+	mkdir -p $(HOME)/.config/dbangs
+	cp -n bangs $(HOME)/.config/dbangs
 uninstall:
-	$(RM) ~/.local/bin/$(BIN)
+	$(RM) $(HOME)/.local/bin/$(BIN)
